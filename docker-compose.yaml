@@ -32,7 +32,8 @@ services:
         if [ ! -f package.json ]; then 
           rm -rf node_modules && npm install -g create-react-app && npx create-react-app .;
         fi;
-        npm start
+        npm install;
+        npm start;
       "
 
   backend:
