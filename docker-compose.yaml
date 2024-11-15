@@ -1,0 +1,62 @@
+services:
+  db:
+    image: mysql:9
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydb
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  frontend:
+    image: node:20
+    container_name: frontend
+    working_dir: /app
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "80:3000"
+    depends_on:
+      - backend
+    command: >
+      sh -c "
+        if [ ! -f package.json ]; then 
+          rm -rf node_modules && npm install -g create-react-app && npx create-react-app .;
+        fi;
+        npm start
+      "
+
+  backend:
+    image: node:20
+    container_name: backend
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+    ports:
+      - "5000:5000"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: mydb
+    command: >
+      sh -c "
+        if [ ! -f package.json ]; then 
+          npm init -y && npm install express mysql2 bcrypt cors;
+        else
+          npm install;
+        fi;
+        node index.js
+      "

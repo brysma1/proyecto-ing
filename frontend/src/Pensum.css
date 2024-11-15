@@ -1,0 +1,182 @@
+* {
+  font-family: Rubik;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  padding: calc(20vmin - 2.5em) 18vmin;
+  height: calc(100% - 40vmin + 2.5em);
+  display: flex;
+  flex-direction: column;
+}
+
+
+.pensum-container {
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.pensum {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start; /* Ensure items are aligned to the start */
+  gap: 16px;
+  padding: 0 2vmin;
+  overflow-x: auto; 
+  scroll-behavior: smooth;
+  white-space: nowrap; /* Prevent items from wrapping */
+}
+
+.pensum::before,
+.pensum::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2vmin;
+  pointer-events: none;
+}
+
+.pensum::before {
+  left: 0;
+  background: linear-gradient(to right, white, transparent);
+}
+
+.pensum::after {
+  right: 0;
+  background: linear-gradient(to left, white, transparent);
+}
+
+.semester {
+  display: inline-block; /* Ensure each semester is treated as an inline block */
+  flex: 0 0 auto; /* Prevent shrinking */
+  padding: 1rem;
+  gap: 1rem;
+  width: 20rem;
+  height: fit-content;
+  background-color: rgb(250, 250, 250);
+  border-color: rgb(200, 200, 200);
+  border-radius: 0.5rem;
+  border-width: 2px;
+  border-style: solid;
+}
+
+.semester button {
+  padding: 10px;
+  background-color: #dc3545; /* Bootstrap danger color */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.semester button:hover {
+  background-color: #c82333; /* Darker shade of the danger color */
+}
+
+.add-semester{
+  display: inline-block; /* Ensure each semester is treated as an inline block */
+  flex: 0 0 auto; /* Prevent shrinking */
+  width: 20rem;
+  height: 10rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  border-color: rgb(200, 200, 200);
+  background-color: rgb(250, 250, 250);
+  border-style: dashed;
+}
+
+.add-semester :hover {
+  background-color: rgb(210, 210, 210);
+}
+
+.add-course {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  gap: 8px;
+  border-radius: 0.5rem;
+  border-width: 2px;
+  border-color: rgb(200, 200, 200);
+  border-style: dashed;
+  cursor: pointer;
+}
+
+.add-course > input {
+  padding: 16px 1rem;
+  width: 100%;
+  height: 2em;
+  font-size: medium;
+  border: none;
+}
+
+.add-course > button {
+  text-align: center;
+  font-size: large;
+  background: rgb(200, 200, 200);
+  border-style: dashed;
+  border-width: 2px;
+  border-color: rgb(150, 150, 150);
+  height: 3em;
+  width: 100%;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 8px;
+  color: black; /* Change text color to black */
+}
+
+.add-course > button:hover {
+  background-color: rgb(240, 240, 240);
+}
+
+.courses {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.course {
+  padding: 8px 1rem;
+  min-height: 4rem;
+  align-content: center;
+  text-align: left;
+  border-radius: 0.5rem;
+  border-width: 2px;
+  border-style: solid;
+  width: 100%;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.course.No-Cursado {
+  background-color: rgb(240, 240, 240);
+  border-color: rgb(200, 200, 200);
+}
+
+.course.Cursando {
+  background-color: rgb(240, 240, 180);
+  border-color: rgb(200, 200, 150);
+}
+
+.course.Aprobado {
+  background-color: rgb(180, 240, 180);
+  border-color: rgb(150, 200, 150);
+}
+
+.course.Reprobado {
+  background-color: rgb(240, 180, 180);
+  border-color: rgb(200, 150, 150);
+}

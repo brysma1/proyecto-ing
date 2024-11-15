@@ -1,0 +1,41 @@
+.courses-in-progress {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.courses-in-progress h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.courses-in-progress ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.courses-in-progress li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.courses-in-progress li:hover {
+  background-color: #f1f1f1;
+}
+
+.courses-in-progress .course-name {
+  font-weight: bold;
+}
+
+.courses-in-progress .course-grade {
+  font-size: 0.9em;
+  color: #555;
+}

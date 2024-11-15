@@ -1,0 +1,29 @@
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS semesters (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  user_id INT,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS courses (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  status VARCHAR(255) NOT NULL,
+  semester_id INT,
+  FOREIGN KEY (semester_id) REFERENCES semesters(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS assignments (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  weight INT NOT NULL,
+  grade FLOAT,  -- Ensure grade is a floating point value
+  course_id INT,
+  FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
+);
