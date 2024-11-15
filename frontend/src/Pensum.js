@@ -36,7 +36,7 @@ const Pensum = ({ semesters, setSemesters }) => {
         ...semester,
         courses: semester.courses.filter(course => course.id !== contextMenu.course.id),
       }));
-      await apiCall('http://localhost:5000/remove-course', 'POST', {
+      await apiCall('http://44.192.37.146:5000/remove-course', 'POST', {
         userId, // Include userId in the payload
         semesterName: semesters[contextMenu.semesterIndex].name,
         courseName: contextMenu.course.name,
@@ -53,7 +53,7 @@ const Pensum = ({ semesters, setSemesters }) => {
           course.id === contextMenu.course.id ? { ...course, status } : course
         ),
       }));
-      await apiCall('http://localhost:5000/update-course-status', 'POST', {
+      await apiCall('http://44.192.37.146:5000/update-course-status', 'POST', {
         userId, // Include userId in the payload
         semesterName: semesters[contextMenu.semesterIndex].name,
         courseName: contextMenu.course.name,
@@ -73,7 +73,7 @@ const Pensum = ({ semesters, setSemesters }) => {
 
       console.log('Sending add-course request:', { userId, semesterName, courseName });
 
-      const response = await apiCall('http://localhost:5000/add-course', 'POST', {
+      const response = await apiCall('http://44.192.37.146:5000/add-course', 'POST', {
         userId, // Include userId in the payload
         semesterName,
         courseName,
@@ -106,7 +106,7 @@ const Pensum = ({ semesters, setSemesters }) => {
     const newSemesterName = `Semestre ${newSemesterNumber}`;
     
     try {
-      const response = await apiCall('http://localhost:5000/add-semester', 'POST', {
+      const response = await apiCall('http://44.192.37.146:5000/add-semester', 'POST', {
         userId: localStorage.getItem('userId'),
         semesterName: newSemesterName,
       });
@@ -127,7 +127,7 @@ const Pensum = ({ semesters, setSemesters }) => {
   const removeSemester = async (semesterIndex) => {
     const semesterToRemove = semesters[semesterIndex];
     try {
-      await apiCall('http://localhost:5000/remove-semester', 'POST', {
+      await apiCall('http://44.192.37.146:5000/remove-semester', 'POST', {
         userId: localStorage.getItem('userId'),
         semesterId: semesterToRemove.id
       });

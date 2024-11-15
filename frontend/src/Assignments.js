@@ -12,7 +12,7 @@ const Assignments = () => {
   useEffect(() => {
     const fetchAssignments = async () => {
       const userId = localStorage.getItem('userId');
-      const response = await fetch(`http://localhost:5000/assignments/${courseId}?userId=${userId}`);
+      const response = await fetch(`http://44.192.37.146:5000/assignments/${courseId}?userId=${userId}`);
       const data = await response.json();
       if (response.ok) {
         setAssignments(data.assignments);
@@ -27,7 +27,7 @@ const Assignments = () => {
 
   const handleAddAssignment = async () => {
     const userId = localStorage.getItem('userId');
-    const response = await fetch('http://localhost:5000/add-assignment', {
+    const response = await fetch('http://44.192.37.146:5000/add-assignment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -55,7 +55,7 @@ const Assignments = () => {
 
     const updatedAssignment = updatedAssignments.find(assignment => assignment.id === id);
 
-    const response = await fetch(`http://localhost:5000/update-assignment/${id}`, {
+    const response = await fetch(`http://44.192.37.146:5000/update-assignment/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updatedAssignment),
