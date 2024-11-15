@@ -17,7 +17,7 @@ const HomePage = () => {
 
     const fetchPensum = async () => {
       try {
-        const response = await fetch(`http://44.192.37.146:5000/pensum/${userId}`);
+        const response = await fetch(`http://35.170.26.81:5000/pensum/${userId}`);
         const data = await response.json();
         if (response.ok) {
           setSemesters(data.semesters);

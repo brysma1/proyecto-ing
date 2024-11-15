@@ -10,7 +10,7 @@ const CoursesInProgress = () => {
     const fetchCourses = async () => {
       const userId = localStorage.getItem('userId');
       try {
-        const response = await fetch(`http://44.192.37.146:5000/pensum/${userId}`);
+        const response = await fetch(`http://35.170.26.81:5000/pensum/${userId}`);
         const data = await response.json();
         if (response.ok) {
           const inProgressCourses = data.semesters.flatMap(semester =>
@@ -19,7 +19,7 @@ const CoursesInProgress = () => {
 
           // Fetch assignments for each course and calculate the current grade
           const coursesWithGrades = await Promise.all(inProgressCourses.map(async (course) => {
-            const assignmentsResponse = await fetch(`http://44.192.37.146:5000/assignments/${course.id}?userId=${userId}`);
+            const assignmentsResponse = await fetch(`http://35.170.26.81:5000/assignments/${course.id}?userId=${userId}`);
             const assignmentsData = await assignmentsResponse.json();
             if (assignmentsResponse.ok) {
               const totalWeight = assignmentsData.assignments.reduce((sum, assignment) => sum + assignment.weight, 0);
